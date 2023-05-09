@@ -13,15 +13,46 @@ resource "local_file" "TF-key" {
     filename = "tfkey"
 }
 
+#creating security group for ec2
 
-# resource "aws_instance" "spoorthy_vm" {
-#   ami           = data.aws_ami.ami.image_id
-#   instance_type = "${var.instance_type}"
-#   iam_instance_profile = "${aws_iam_instance_profile.s3_bucket.name}"
+resource "aws_security_group" "main" {
+  name        = "spoorthy-${var.spoothy_bucket_tag_name}-ssh"
+  description = "spoorthy-${var.spoothy_bucket_tag_name}-ssh"
 
-#   tags = {
-#     Name = "${var.spoothy_bucket_tag_name}-vm"
-#   }
-# }
+  ingress {
+    description      = "ssh"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = [var.vpc_cidr_block,var.WORKSTATION_IP]
+
+  }
+  egress {
+    description      = "egress"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+
+  }
+
+
+  tags = {
+    Name = "spoorthy-${var.spoothy_bucket_tag_name}-ssh"
+  }
+}
+
+resource "aws_instance" "spoorthy_vm" {
+  ami           = "${var.ami_id}"
+  instance_type = "${var.instance_type}"
+  # iam_instance_profile = "${aws_iam_instance_profile.s3_bucket.name}"
+  security_groups = [aws_security_group.main.main.name]
+  key_name = "TF_key"
+
+
+  tags = {
+    Name = "${var.spoothy_bucket_tag_name}-vm"
+  }
+}
 
 
