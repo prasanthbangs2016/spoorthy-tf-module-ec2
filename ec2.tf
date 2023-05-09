@@ -14,14 +14,14 @@ resource "local_file" "TF-key" {
 }
 
 
-resource "aws_instance" "spoorthy_vm" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = "${var.instance_type}"
-  iam_instance_profile = "${aws_iam_instance_profile.s3_bucket.name}"
+# resource "aws_instance" "spoorthy_vm" {
+#   ami           = data.aws_ami.ami.image_id
+#   instance_type = "${var.instance_type}"
+#   iam_instance_profile = "${aws_iam_instance_profile.s3_bucket.name}"
 
-  tags = {
-    Name = "${var.spoothy_bucket_tag_name}-vm"
-  }
-}
+#   tags = {
+#     Name = "${var.spoothy_bucket_tag_name}-vm"
+#   }
+# }
 
 
