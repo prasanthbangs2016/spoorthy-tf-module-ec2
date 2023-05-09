@@ -1,4 +1,4 @@
-resource "aws_iam_role" "s3_bucket" {
+resource "aws_iam_role" "s3-bucket" {
   name = "spoorthy-${var.spoothy_bucket_tag_env}_s3_full_access"
 
   assume_role_policy = <<EOF
@@ -22,7 +22,7 @@ EOF
   }
 }
 
-resource "aws_iam_role_policy" "s3_policy" {
+resource "aws_iam_role_policy" "s3-policy" {
   name = "spoorthy-${var.spoothy_bucket_tag_env}_s3_full_access"
   role = "${aws_iam_role.s3_bucket.id}"
 
