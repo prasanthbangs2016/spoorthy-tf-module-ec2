@@ -45,7 +45,7 @@ resource "aws_security_group" "main" {
 resource "aws_instance" "spoorthy_vm" {
   ami           = "${var.ami_id}"
   instance_type = "${var.instance_type}"
-  # iam_instance_profile = "${aws_iam_instance_profile.s3_bucket.name}"
+  iam_instance_profile = "${aws_iam_instance_profile.s3_bucket.name}"
   security_groups = [aws_security_group.main.name]
   key_name = "TF_key"
 
