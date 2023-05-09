@@ -1,7 +1,7 @@
 resource "aws_iam_policy" "s3-access" {
-  name        = "spoorthy-${var.spoothy_bucket_tag_env}-s3-full-access"
+  name        = "spoorthy-${var.spoothy-bucket-tag-env}-s3-full-access"
   path        = "/"
-  description = "spoorthy-${var.spoothy_bucket_tag_env}-s3-full-access"
+  description = "spoorthy-${var.spoothy-bucket-tag-env}-s3-full-access"
 
   policy = jsonencode({
       sid = "S3FullAccess"
@@ -13,7 +13,7 @@ resource "aws_iam_policy" "s3-access" {
 }
 
 resource "aws_iam_role" "s3-bucket" {
-  name = "spoorthy-${var.spoothy_bucket_tag_env}-s3-full-access"
+  name = "spoorthy-${var.spoothy-bucket-tag-env}-s3-full-access"
 
   assume_role_policy = <<EOF
 {
@@ -32,11 +32,11 @@ resource "aws_iam_role" "s3-bucket" {
 EOF
 
   tags = {
-      tag-key = "spoorthy-${var.spoothy_bucket_tag_env}-s3-full-access"
+      tag-key = "spoorthy-${var.spoothy-bucket-tag-env}-s3-full-access"
   }
 }
 resource "aws_iam_instance_profile" "s3_profile" {
-  name = "spoorthy-${var.spoothy_bucket_tag_env}-s3-full-access"
+  name = "spoorthy-${var.spoothy-bucket-tag-env}-s3-full-access"
   role = "${aws_iam_role.s3-bucket.name}"
 }
 
