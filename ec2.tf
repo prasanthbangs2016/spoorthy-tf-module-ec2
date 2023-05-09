@@ -1,5 +1,5 @@
 resource "aws_spot_instance_request" "spoorthy_vm" {
-  ami           = "${var.ami_id}"
+  ami           = data.aws_ami.ami.image_id
   instance_type = "${var.instance_type}"
   iam_instance_profile = aws_iam_instance_profile.s3_bucket
   wait_for_fulfillment = true
