@@ -10,6 +10,7 @@ resource "aws_iam_policy" "s3-access" {
       actions   = ["s3:*"]
       resources = ["*"]
     })
+}
 
 resource "aws_iam_role" "s3-bucket" {
   name = "spoorthy-${var.spoothy_bucket_tag_env}-s3-full-access"
