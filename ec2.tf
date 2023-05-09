@@ -16,8 +16,8 @@ resource "local_file" "TF-key" {
 #creating security group for ec2
 
 resource "aws_security_group" "main" {
-  name        = "spoorthy-${var.spoothy-bucket-tag_name}-ssh"
-  description = "spoorthy-${var.spoothy-bucket-tag_name}-ssh"
+  name        = "spoorthy-${var.spoothy-bucket-tag-name}-ssh"
+  description = "spoorthy-${var.spoothy-bucket-tag-name}-ssh"
 
   ingress {
     description      = "ssh"
