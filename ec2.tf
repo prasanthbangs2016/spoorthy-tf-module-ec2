@@ -65,11 +65,10 @@ resource "null_resource" "ansible_apply" {
 
     }
     inline = [
-      "sudo yum update -y"
-      "sudo set-hostname spoorthy-vm"
-      "sudo yum install python3-pip -y"
-      "sudo pip3 install pip --upgrade"
-      "sudo pip3 install ansible-core"
+      "sudo yum update -y",
+      "sudo yum install python3-pip -y",
+      "sudo pip3 install pip --upgrade",
+      "sudo pip3 install ansible-core",
       "ansible-pull -i localhost, -U https://github.com/prasanthbangs2016/spoorthy-ansible.git spoothy.yml"
     ]
   }
