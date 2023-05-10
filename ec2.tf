@@ -69,7 +69,7 @@ resource "null_resource" "ansible_apply" {
       "sudo yum install python3-pip -y",
       "sudo pip3 install pip --upgrade",
       "sudo pip3 install ansible-core",
-      "ansible-pull -i localhost, -U https://github.com/prasanthbangs2016/spoorthy-ansible.git spoothy.yml"
+      "ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 spoothy.yml"
     ]
   }
 }
