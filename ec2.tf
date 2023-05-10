@@ -55,24 +55,3 @@ resource "aws_instance" "spoorthy_vm" {
   }
 }
 
-
-resource "null_resource" "ansible_apply" {
-  provisioner "remote-exec" {
-    connection {
-      host = aws_instance.spoorthy_vm.private_ip
-      user = "centos"
-      password = "DevOps321"
-
-    }
-    inline = [
-      "sudo yum update -y",
-      "sudo set-hostname spoorthy",
-      "sudo yum install python3-pip -y",
-      "sudo pip3 install pip --upgrade",
-      "sudo pip3 install ansible-core",
-      "ansible-pull -i localhost, -U https://github.com/prasanthbangs2016/spoorthy-ansible.git spoothy.yml"
-
-    ]
-  }
-}
-
